@@ -40,10 +40,10 @@ namespace Incassator
                     {
                         toRemove.Add(i);
                     }
-                    if (curMinScore[i] != -1 && (Program.tempMin == -1 || curMinScore[i] < Program.tempMin))
+                    if (curMinScore[i] != -1 && (MainAlgorithm.tempMin == -1 || curMinScore[i] < MainAlgorithm.tempMin))
                     {
-                        Program.tempMin = curMinScore[i];
-                        Program.bestSolution.setOrder(vertexes.ElementAt(i).fixedOrder);
+                        MainAlgorithm.tempMin = curMinScore[i];
+                        MainAlgorithm.bestSolution.setOrder(vertexes.ElementAt(i).fixedOrder);
                     }
                 }
             }

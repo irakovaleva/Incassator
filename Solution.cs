@@ -114,7 +114,7 @@ namespace Incassator
             result += "\nSum value of safety is = " + optimum +
                       "\nNum of directive times faults = " + directiveFaults + "\n\n";
                       //"\nNum of steps is = " + numSteps +
-                      //"\nNum of vertexes is = " + numBranches + "\n\n";
+                      //"\nNum of vertexes is = " + numOfSteps + "\n\n";
             return result;
         }
 

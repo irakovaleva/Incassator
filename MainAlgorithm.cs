@@ -6,11 +6,8 @@ using System.Windows.Forms;
 
 namespace Incassator
 {
-    static class Program
+    static class MainAlgorithm
     {
-        /// <summary>
-        /// The main entry point for the application.
-        /// </summary>
         [STAThread]
         static void Main()
         {
@@ -25,43 +22,46 @@ namespace Incassator
         public static int globalMin;
         public static int tempMin;
         public static Solution bestSolution;
-        public static int numBranches;
-        public static bool ifTimeCounts;
-        //public static Delivery.Task task;
         public static List<Solution> allSolutions;
 
         public static Task OpenTask(string fileName)
         {
             lowScoreAlg = new RudestLowScore();
             topScoreAlg = new BaseTopScore();
-            branchingAlg = new OptimisticAlg(lowScoreAlg, topScoreAlg);
+            branchingAlg = new OptimisticAlg();
             globalMin = -1;
             tempMin = -1;
-            ifTimeCounts = false;
             Task task = new Task(fileName);
             bool check = task.checkForTriangleRuleAndCorrect();
             return task;
         }
 
-        public static Solution getSolution(Task task)
+        public static int getSolution(Task task)
+        {
+            int bestSolutionIndex = 0;
+            Solution solution = runMVG(task);
+            allSolutions.Add(solution);
+            int anotherSolutionIndex = MainAlgorithm.tryToGetSolutionWithLessDirectiveFaults(task);
+            if (anotherSolutionIndex != -1)
+            {
+                bestSolutionIndex = anotherSolutionIndex;
+            }
+            return bestSolutionIndex;
+        }
+
+        public static Solution runMVG(Task task)
         {
             bestSolution = new Solution(task);
             int numSteps = 0;
-            numBranches = 0;
             List<int> fixedOrder = new List<int>();
             fixedOrder.Add(0);
             List<Vertex> curVertexes = new List<Vertex>();
             Vertex top = new Vertex(task, fixedOrder);
             curVertexes.Add(top);
-            numBranches++;
             while (curVertexes.Count() != 0)
             {
                 numSteps++;
-                //Console.Write(numSteps + "\n");
                 branchingAlg.getParentNextVertexes(task, curVertexes);
-                //for (int i = 0; i < curVertexes.Count(); i++) {
-                //    Console.WriteLine(string.Join(" ", curVertexes[i].fixedOrder) + "\n");
-                //}
                 Selection.getSelection(curVertexes, lowScoreAlg, topScoreAlg);
             }
             if (tempMin == -1)
@@ -71,10 +71,9 @@ namespace Incassator
             bestSolution.setNumSteps(numSteps);
             bestSolution.setOptimum(topScoreAlg.getScore(task, bestSolution.getOrderNumber()));
             bestSolution.setOrder(topScoreAlg.getExtendOrder());
-            bestSolution.setNumBranches(numBranches);
+            bestSolution.setNumBranches(branchingAlg.getNumOfBranches());
             bestSolution.setDirectiveFaults(topScoreAlg.getDirectiveFaults(task, bestSolution.getOrderNumber()));
             return bestSolution.Clone();
-
         }
 
         public static int tryToGetSolutionWithLessDirectiveFaults(Task task)
@@ -89,7 +88,7 @@ namespace Incassator
                 tempMin = -1;
                 int curDirValue = (int)Math.Ceiling(Convert.ToDouble(maxDirValue + minDirValue) / Convert.ToDouble(2));
                 task.directiveFaultsMax = curDirValue;
-                Solution result = getSolution(task);
+                Solution result = runMVG(task);
                 if (result == null || tempMin > curSolution.getOptimum())
                 {
                     minDirValue = curDirValue;

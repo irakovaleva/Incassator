@@ -8,16 +8,7 @@ namespace Incassator
 {
     public abstract class ABranching
     {
-        protected AGettingScore lowScoreAlg;
-        protected AGettingScore topScoreAlg;
         public static int numOfBranches;
-
-
-        public ABranching(AGettingScore lowScoreAlg, AGettingScore topScoreAlg)
-        {
-            this.lowScoreAlg = lowScoreAlg;
-            this.topScoreAlg = topScoreAlg;
-        }
 
         public void getParentNextVertexes(Task task, List<Vertex> curVertexes)
         {
@@ -40,6 +31,11 @@ namespace Incassator
                 curVertexes.Remove(curVertex);
             }
 
+        }
+
+        public int getNumOfBranches()
+        {
+            return numOfBranches;
         }
 
         public abstract Vertex chooseVertex(Task task, List<Vertex> curVertexes);

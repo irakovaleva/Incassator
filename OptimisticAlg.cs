@@ -8,10 +8,6 @@ namespace Incassator
 {
     class OptimisticAlg: ABranching 
     {
-        public OptimisticAlg(AGettingScore lowScoreAlg, AGettingScore topScoreAlg) : base(lowScoreAlg, topScoreAlg)
-        {
-
-        }
 
         public override Vertex chooseVertex(Task task, List<Vertex> curVertexes)
         {
@@ -25,7 +21,7 @@ namespace Incassator
                 int minIndex = -1;
                 for (int i = 0; i < curVertexes.Count(); i++)
                 {
-                    int curTopScore = curVertexes.ElementAt(i).getTopScore(topScoreAlg);
+                    int curTopScore = curVertexes.ElementAt(i).getTopScore();
                     if ((minTopScore == -1 || curTopScore < minTopScore) && curTopScore != -1)
                     {
                         minTopScore = curTopScore;

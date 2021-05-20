@@ -38,7 +38,7 @@ namespace Incassator
             {
                 selectFileTextBox.Text = fileToOpen;
                 selectFileTextBox.ForeColor = Color.Black;
-                this.task = Program.OpenTask(fileToOpen);
+                this.task = MainAlgorithm.OpenTask(fileToOpen);
                 this.Draw(this.task);
                 this.otherSolutionsTitle.Text = "Other solutions with lower value of directive faults:";
                 this.solutionText.Text = "";
@@ -141,41 +141,33 @@ namespace Incassator
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Program.allSolutions = new List<Solution>();
+            MainAlgorithm.allSolutions = new List<Solution>();
             if (this.task == null)
             {
                 MessageBox.Show("Select file with Task info, please", "No Task Info", MessageBoxButtons.OK);
                 return;
             }
-            if (Program.globalMin != -1)
+            if (MainAlgorithm.globalMin != -1)
             {
-                this.task = Program.OpenTask(fileToOpen);
+                this.task = MainAlgorithm.OpenTask(fileToOpen);
             }
             this.otherSolutionsTitle.Text = "Other solutions with lower value of directive faults:";
-            Solution solution = Program.getSolution(task);
-            Program.allSolutions.Add(solution);
-            int anotherSolutionIndex = Program.tryToGetSolutionWithLessDirectiveFaults(task);
-            int shownIndex = 0;
-            if (anotherSolutionIndex != -1)
-            {
-                solution = Program.allSolutions[anotherSolutionIndex];
-                shownIndex = anotherSolutionIndex;
-            }
+            int bestSolutionIndex = MainAlgorithm.getSolution(task);
 
-            solutionText.Text = solution.getPrint();
+            solutionText.Text = MainAlgorithm.allSolutions[bestSolutionIndex].getPrint();
 
-            if (Program.allSolutions.Count == 1)
+            if (MainAlgorithm.allSolutions.Count == 1)
             {
                 otherSolutionsLabel.Text = "No other solutions with lower value of directive faults was found";
             }
             else
             {
                 String otherSolutionsText = "";
-                for (int i = 0; i < Program.allSolutions.Count; i++)
+                for (int i = 0; i < MainAlgorithm.allSolutions.Count; i++)
                 {
-                    if (i != shownIndex)
+                    if (i != bestSolutionIndex)
                     {
-                        otherSolutionsText += i + ". " + Program.allSolutions[i].getShortPrint();
+                        otherSolutionsText += i + ". " + MainAlgorithm.allSolutions[i].getShortPrint();
                     }
                 }
                 otherSolutionsLabel.Text = otherSolutionsText;
@@ -186,7 +178,7 @@ namespace Incassator
         {
             string labelText = this.showFullTextBox.Text;
             int numOfSolution = -1;
-            if (Program.allSolutions == null || Program.allSolutions.Count == 0)
+            if (MainAlgorithm.allSolutions == null || MainAlgorithm.allSolutions.Count == 0)
             {
                 MessageBox.Show("You need to get solution first", "No solution", MessageBoxButtons.OK);
                 return;
@@ -200,23 +192,23 @@ namespace Incassator
                 MessageBox.Show("Please write NUMBER of needed solution", "Number wasn't got", MessageBoxButtons.OK);
                 return;
             }
-            if (numOfSolution >= Program.allSolutions.Count)
+            if (numOfSolution >= MainAlgorithm.allSolutions.Count)
             {
                 MessageBox.Show("You wrote number of solution that doesn't exist", "Incorrect index", MessageBoxButtons.OK);
                 return;
             }
-            if (Program.allSolutions.Count == 1)
+            if (MainAlgorithm.allSolutions.Count == 1)
             {
                 return;
             }
-            solutionText.Text = Program.allSolutions[numOfSolution].getPrint();
+            solutionText.Text = MainAlgorithm.allSolutions[numOfSolution].getPrint();
             this.otherSolutionsTitle.Text = "Other known solutions:";
             String otherSolutionsText = "";
-            for (int i = 0; i < Program.allSolutions.Count; i++)
+            for (int i = 0; i < MainAlgorithm.allSolutions.Count; i++)
             {
                 if (i != numOfSolution)
                 {
-                    otherSolutionsText += i + ". " + Program.allSolutions[i].getShortPrint();
+                    otherSolutionsText += i + ". " + MainAlgorithm.allSolutions[i].getShortPrint();
                 }
             }
             otherSolutionsLabel.Text = otherSolutionsText;

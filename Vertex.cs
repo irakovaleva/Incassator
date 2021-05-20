@@ -21,17 +21,31 @@ namespace Incassator
             this.lowScore = -2;
         }
 
-        public int getLowScore(AGettingScore lowScoreAlg)
+        public int getLowScore(AGettingScore lowScoreAlg=null)
         {
             if (lowScore == -2)
+            {
+                if (lowScoreAlg == null)
+                {
+                    Console.WriteLine("ERROR: Need to set low score algorithm as a parametr\n");
+                    throw new Exception();
+                }
                 lowScore = lowScoreAlg.getScore(task, fixedOrder);
+            }
             return lowScore;
         }
 
-        public int getTopScore(AGettingScore topScoreAlg)
+        public int getTopScore(AGettingScore topScoreAlg=null)
         {
             if (topScore == -2)
+            {
+                if (topScoreAlg == null)
+                {
+                    Console.WriteLine("ERROR: Need to set top score algorithm as a parametr\n");
+                    throw new Exception();
+                }
                 topScore = topScoreAlg.getScore(task, fixedOrder);
+            }
             return topScore;
         }
 
