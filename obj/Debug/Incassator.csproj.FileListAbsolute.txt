@@ -1,0 +1,10 @@
+C:\Users\Ikovaleva\source\repos\Incassator\obj\Debug\Incassator.csprojAssemblyReference.cache
+C:\Users\Ikovaleva\source\repos\Incassator\obj\Debug\Incassator.Properties.Resources.resources
+C:\Users\Ikovaleva\source\repos\Incassator\obj\Debug\Incassator.csproj.GenerateResource.cache
+C:\Users\Ikovaleva\source\repos\Incassator\obj\Debug\Incassator.csproj.CoreCompileInputs.cache
+C:\Users\Ikovaleva\source\repos\Incassator\bin\Debug\Incassator.exe.config
+C:\Users\Ikovaleva\source\repos\Incassator\bin\Debug\Incassator.exe
+C:\Users\Ikovaleva\source\repos\Incassator\bin\Debug\Incassator.pdb
+C:\Users\Ikovaleva\source\repos\Incassator\obj\Debug\Incassator.exe
+C:\Users\Ikovaleva\source\repos\Incassator\obj\Debug\Incassator.pdb
+C:\Users\Ikovaleva\source\repos\Incassator\obj\Debug\Incassator.Form1.resources
