@@ -50,8 +50,20 @@
             this.showFullTitle = new System.Windows.Forms.Label();
             this.showFullTextBox = new System.Windows.Forms.TextBox();
             this.showFullButton = new System.Windows.Forms.Button();
+            this.useBrutForce = new System.Windows.Forms.Button();
+            this.bruteForceTitle = new System.Windows.Forms.Label();
+            this.bruteForceCorePanel = new System.Windows.Forms.Panel();
+            this.bruteForceText = new System.Windows.Forms.Label();
+            this.tryToFindMoreSolutions = new System.Windows.Forms.CheckBox();
+            this.timeMVG = new System.Windows.Forms.Label();
+            this.timeBinary = new System.Windows.Forms.Label();
+            this.timeBruteForce = new System.Windows.Forms.Label();
+            this.timeMVGText = new System.Windows.Forms.Label();
+            this.timeBinaryText = new System.Windows.Forms.Label();
+            this.timeBruteForceText = new System.Windows.Forms.Label();
             this.solutionCorePanel.SuspendLayout();
             this.otherSolutionsCorePanel.SuspendLayout();
+            this.bruteForceCorePanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // selectFileTitle
@@ -115,8 +127,8 @@
             this.profitTablePanel.Location = new System.Drawing.Point(0, 0);
             this.profitTablePanel.Name = "profitTablePanel";
             this.profitTablePanel.RowCount = 2;
-            this.profitTablePanel.TabIndex = 8;
             this.profitTablePanel.Size = new System.Drawing.Size(5, 5);
+            this.profitTablePanel.TabIndex = 8;
             this.profitTablePanel.Visible = false;
             // 
             // matrixCorePanel
@@ -140,7 +152,6 @@
             // 
             // profitCorePanel
             // 
-            this.profitCorePanel.VerticalScroll.Maximum = 0;
             this.profitCorePanel.AutoScroll = true;
             this.profitCorePanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.profitCorePanel.Location = new System.Drawing.Point(16, 353);
@@ -159,7 +170,6 @@
             // 
             // directiveCorePanel
             // 
-            this.directiveCorePanel.VerticalScroll.Maximum = 0;
             this.directiveCorePanel.AutoScroll = true;
             this.directiveCorePanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.directiveCorePanel.Location = new System.Drawing.Point(16, 446);
@@ -172,16 +182,19 @@
             this.directiveTablePanel.AutoSize = true;
             this.directiveTablePanel.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.OutsetPartial;
             this.directiveTablePanel.ColumnCount = 1;
+            this.directiveTablePanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 44F));
             this.directiveTablePanel.Location = new System.Drawing.Point(0, 0);
             this.directiveTablePanel.Name = "directiveTablePanel";
             this.directiveTablePanel.RowCount = 2;
+            this.directiveTablePanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.directiveTablePanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.directiveTablePanel.Size = new System.Drawing.Size(50, 49);
             this.directiveTablePanel.TabIndex = 10;
-            this.directiveTablePanel.Size = new System.Drawing.Size(5, 5);
             this.directiveTablePanel.Visible = false;
             // 
             // getSolutionButton
             // 
-            this.getSolutionButton.Location = new System.Drawing.Point(342, 22);
+            this.getSolutionButton.Location = new System.Drawing.Point(411, 22);
             this.getSolutionButton.Name = "getSolutionButton";
             this.getSolutionButton.Size = new System.Drawing.Size(143, 38);
             this.getSolutionButton.TabIndex = 11;
@@ -221,7 +234,7 @@
             this.otherSolutionsTitle.AutoSize = true;
             this.otherSolutionsTitle.Location = new System.Drawing.Point(411, 331);
             this.otherSolutionsTitle.Name = "otherSolutionsTitle";
-            this.otherSolutionsTitle.Size = new System.Drawing.Size(318, 17);
+            this.otherSolutionsTitle.Size = new System.Drawing.Size(322, 17);
             this.otherSolutionsTitle.TabIndex = 14;
             this.otherSolutionsTitle.Text = "Other solutions with lower value of directive faults:";
             // 
@@ -269,11 +282,125 @@
             this.showFullButton.UseVisualStyleBackColor = true;
             this.showFullButton.Click += new System.EventHandler(this.button3_Click);
             // 
+            // useBrutForce
+            // 
+            this.useBrutForce.Location = new System.Drawing.Point(784, 22);
+            this.useBrutForce.Name = "useBrutForce";
+            this.useBrutForce.Size = new System.Drawing.Size(153, 37);
+            this.useBrutForce.TabIndex = 19;
+            this.useBrutForce.Text = "Use Brute Force";
+            this.useBrutForce.UseVisualStyleBackColor = true;
+            this.useBrutForce.Click += new System.EventHandler(this.useBrutForce_Click);
+            // 
+            // bruteForceTitle
+            // 
+            this.bruteForceTitle.AutoSize = true;
+            this.bruteForceTitle.Location = new System.Drawing.Point(781, 69);
+            this.bruteForceTitle.Name = "bruteForceTitle";
+            this.bruteForceTitle.Size = new System.Drawing.Size(135, 17);
+            this.bruteForceTitle.TabIndex = 20;
+            this.bruteForceTitle.Text = "Brute Force solution";
+            // 
+            // bruteForceCorePanel
+            // 
+            this.bruteForceCorePanel.AutoScroll = true;
+            this.bruteForceCorePanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.bruteForceCorePanel.Controls.Add(this.bruteForceText);
+            this.bruteForceCorePanel.Location = new System.Drawing.Point(784, 90);
+            this.bruteForceCorePanel.Name = "bruteForceCorePanel";
+            this.bruteForceCorePanel.Size = new System.Drawing.Size(336, 352);
+            this.bruteForceCorePanel.TabIndex = 21;
+            // 
+            // bruteForceText
+            // 
+            this.bruteForceText.AutoSize = true;
+            this.bruteForceText.Location = new System.Drawing.Point(0, 0);
+            this.bruteForceText.Name = "bruteForceText";
+            this.bruteForceText.Size = new System.Drawing.Size(0, 17);
+            this.bruteForceText.TabIndex = 0;
+            // 
+            // tryToFindMoreSolutions
+            // 
+            this.tryToFindMoreSolutions.AutoSize = true;
+            this.tryToFindMoreSolutions.Checked = true;
+            this.tryToFindMoreSolutions.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.tryToFindMoreSolutions.Location = new System.Drawing.Point(583, 39);
+            this.tryToFindMoreSolutions.Name = "tryToFindMoreSolutions";
+            this.tryToFindMoreSolutions.Size = new System.Drawing.Size(119, 21);
+            this.tryToFindMoreSolutions.TabIndex = 22;
+            this.tryToFindMoreSolutions.Text = "Binary Search";
+            this.tryToFindMoreSolutions.UseVisualStyleBackColor = true;
+            this.tryToFindMoreSolutions.CheckedChanged += new System.EventHandler(this.tryToFindMoreSolutions_CheckedChanged);
+            // 
+            // timeMVG
+            // 
+            this.timeMVG.AutoSize = true;
+            this.timeMVG.Location = new System.Drawing.Point(784, 450);
+            this.timeMVG.Name = "timeMVG";
+            this.timeMVG.Size = new System.Drawing.Size(108, 17);
+            this.timeMVG.TabIndex = 23;
+            this.timeMVG.Text = "time base MVG:";
+            // 
+            // timeBinary
+            // 
+            this.timeBinary.AutoSize = true;
+            this.timeBinary.Location = new System.Drawing.Point(784, 475);
+            this.timeBinary.Name = "timeBinary";
+            this.timeBinary.Size = new System.Drawing.Size(131, 17);
+            this.timeBinary.TabIndex = 24;
+            this.timeBinary.Text = "time Binary Search:";
+            // 
+            // timeBruteForce
+            // 
+            this.timeBruteForce.AutoSize = true;
+            this.timeBruteForce.Location = new System.Drawing.Point(784, 500);
+            this.timeBruteForce.Name = "timeBruteForce";
+            this.timeBruteForce.Size = new System.Drawing.Size(112, 17);
+            this.timeBruteForce.TabIndex = 25;
+            this.timeBruteForce.Text = "time Brute Force";
+            // 
+            // timeMVGText
+            // 
+            this.timeMVGText.AutoSize = true;
+            this.timeMVGText.Location = new System.Drawing.Point(898, 450);
+            this.timeMVGText.Name = "timeMVGText";
+            this.timeMVGText.Size = new System.Drawing.Size(46, 17);
+            this.timeMVGText.TabIndex = 26;
+            this.timeMVGText.Text = "";
+            // 
+            // timeBinaryText
+            // 
+            this.timeBinaryText.AutoSize = true;
+            this.timeBinaryText.Location = new System.Drawing.Point(921, 475);
+            this.timeBinaryText.Name = "timeBinaryText";
+            this.timeBinaryText.Size = new System.Drawing.Size(46, 17);
+            this.timeBinaryText.TabIndex = 27;
+            this.timeBinaryText.Text = "";
+            // 
+            // timeBruteForceText
+            // 
+            this.timeBruteForceText.AutoSize = true;
+            this.timeBruteForceText.Location = new System.Drawing.Point(903, 500);
+            this.timeBruteForceText.Name = "timeBruteForceText";
+            this.timeBruteForceText.Size = new System.Drawing.Size(46, 17);
+            this.timeBruteForceText.TabIndex = 28;
+            this.timeBruteForceText.Text = "";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 533);
+            this.ClientSize = new System.Drawing.Size(1148, 533);
+            this.Controls.Add(this.timeBruteForceText);
+            this.Controls.Add(this.timeBinaryText);
+            this.Controls.Add(this.timeMVGText);
+            this.Controls.Add(this.timeBruteForce);
+            this.Controls.Add(this.timeBinary);
+            this.Controls.Add(this.timeMVG);
+            this.Controls.Add(this.tryToFindMoreSolutions);
+            this.Controls.Add(this.bruteForceCorePanel);
+            this.Controls.Add(this.bruteForceTitle);
+            this.Controls.Add(this.useBrutForce);
             this.Controls.Add(this.showFullButton);
             this.Controls.Add(this.showFullTextBox);
             this.Controls.Add(this.showFullTitle);
@@ -300,6 +427,8 @@
             this.solutionCorePanel.PerformLayout();
             this.otherSolutionsCorePanel.ResumeLayout(false);
             this.otherSolutionsCorePanel.PerformLayout();
+            this.bruteForceCorePanel.ResumeLayout(false);
+            this.bruteForceCorePanel.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -329,6 +458,17 @@
         private System.Windows.Forms.Label showFullTitle;
         private System.Windows.Forms.TextBox showFullTextBox;
         private System.Windows.Forms.Button showFullButton;
+        private System.Windows.Forms.Button useBrutForce;
+        private System.Windows.Forms.Label bruteForceTitle;
+        private System.Windows.Forms.Panel bruteForceCorePanel;
+        private System.Windows.Forms.Label bruteForceText;
+        private System.Windows.Forms.CheckBox tryToFindMoreSolutions;
+        private System.Windows.Forms.Label timeMVG;
+        private System.Windows.Forms.Label timeBinary;
+        private System.Windows.Forms.Label timeBruteForce;
+        private System.Windows.Forms.Label timeMVGText;
+        private System.Windows.Forms.Label timeBinaryText;
+        private System.Windows.Forms.Label timeBruteForceText;
     }
 }
 

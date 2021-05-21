@@ -23,11 +23,14 @@ namespace Incassator
         public static int tempMin;
         public static Solution bestSolution;
         public static List<Solution> allSolutions;
+        public static bool runBinarySearch = true;
+        public static long timeMVG;
+        public static long timeBinary;
 
         public static Task OpenTask(string fileName)
         {
-            lowScoreAlg = new RudestLowScore();
-            topScoreAlg = new BaseTopScore();
+            lowScoreAlg = new LowScore();
+            topScoreAlg = new TopScore();
             branchingAlg = new OptimisticAlg();
             globalMin = -1;
             tempMin = -1;
@@ -39,12 +42,19 @@ namespace Incassator
         public static int getSolution(Task task)
         {
             int bestSolutionIndex = 0;
+            var watch = System.Diagnostics.Stopwatch.StartNew();
             Solution solution = runMVG(task);
+            watch.Stop();
+            timeMVG = watch.ElapsedMilliseconds;
             allSolutions.Add(solution);
-            int anotherSolutionIndex = MainAlgorithm.tryToGetSolutionWithLessDirectiveFaults(task);
-            if (anotherSolutionIndex != -1)
+            globalMin = tempMin;
+            if (runBinarySearch)
             {
-                bestSolutionIndex = anotherSolutionIndex;
+                int anotherSolutionIndex = MainAlgorithm.tryToGetSolutionWithLessDirectiveFaults(task);
+                if (anotherSolutionIndex != -1)
+                {
+                    bestSolutionIndex = anotherSolutionIndex;
+                }
             }
             return bestSolutionIndex;
         }
@@ -78,6 +88,7 @@ namespace Incassator
 
         public static int tryToGetSolutionWithLessDirectiveFaults(Task task)
         {
+            var watch = System.Diagnostics.Stopwatch.StartNew();
             int solutionIndex = -1;
             Solution curSolution = bestSolution;
             globalMin = tempMin;
@@ -104,6 +115,8 @@ namespace Incassator
                     allSolutions.Add(result.Clone());
                 }
             }
+            watch.Stop();
+            timeBinary = watch.ElapsedMilliseconds;
             return solutionIndex;
         }
     }

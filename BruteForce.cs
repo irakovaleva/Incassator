@@ -8,8 +8,9 @@ namespace Incassator
 {
     class BruteForce : AGettingScore
     {
-        Solution solution;
-        Task task;
+        private Solution solution;
+        private Task task;
+        public long time;
 
         public override List<int> getExtendOrder()
         {
@@ -23,12 +24,15 @@ namespace Incassator
 
         public Solution getSolution(Task task)
         {
+            var watch = System.Diagnostics.Stopwatch.StartNew();
             this.task = task;
+            this.task.directiveFaultsMax = this.task.numOrders;
             solution = new Solution(task);
             LinkedList<int> initOrder = new LinkedList<int>();
             initOrder.AddFirst(1);
             extendWith(task.numOrders, initOrder, 2);
-            //solution.getOrderNumber().RemoveAt(solution.getOrderNumber().Count - 1);
+            watch.Stop();
+            time = watch.ElapsedMilliseconds;
             return solution;
         }
 

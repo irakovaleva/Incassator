@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Incassator
 {
-    class RudestLowScore : AGettingScore
+    class LowScore : AGettingScore
     {
         public override int getScore(Task task, List<int> fixedOrder)
         {

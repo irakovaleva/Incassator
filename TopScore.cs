@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Incassator
 {
-    class BaseTopScore : AGettingScore
+    class TopScore : AGettingScore
     {
         public override int getScore(Task task, List<int> fixedOrder)
         {

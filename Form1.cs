@@ -43,6 +43,10 @@ namespace Incassator
                 this.otherSolutionsTitle.Text = "Other solutions with lower value of directive faults:";
                 this.solutionText.Text = "";
                 this.otherSolutionsLabel.Text = "";
+                this.bruteForceText.Text = "";
+                this.timeMVGText.Text = "";
+                this.timeBruteForceText.Text = "";
+                this.timeBinaryText.Text = "";
             }
         }
 
@@ -154,24 +158,7 @@ namespace Incassator
             this.otherSolutionsTitle.Text = "Other solutions with lower value of directive faults:";
             int bestSolutionIndex = MainAlgorithm.getSolution(task);
 
-            solutionText.Text = MainAlgorithm.allSolutions[bestSolutionIndex].getPrint();
-
-            if (MainAlgorithm.allSolutions.Count == 1)
-            {
-                otherSolutionsLabel.Text = "No other solutions with lower value of directive faults was found";
-            }
-            else
-            {
-                String otherSolutionsText = "";
-                for (int i = 0; i < MainAlgorithm.allSolutions.Count; i++)
-                {
-                    if (i != bestSolutionIndex)
-                    {
-                        otherSolutionsText += i + ". " + MainAlgorithm.allSolutions[i].getShortPrint();
-                    }
-                }
-                otherSolutionsLabel.Text = otherSolutionsText;
-            }
+            showResults(bestSolutionIndex);
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -212,6 +199,63 @@ namespace Incassator
                 }
             }
             otherSolutionsLabel.Text = otherSolutionsText;
+        }
+
+        private void useBrutForce_Click(object sender, EventArgs e)
+        {
+            if (this.task == null)
+            {
+                MessageBox.Show("Select file with Task info, please", "No Task Info", MessageBoxButtons.OK);
+                return;
+            }
+            BruteForce bruteForce = new BruteForce();
+            Solution solution = bruteForce.getSolution(this.task);
+            bruteForceText.Text = solution.getPrint();
+            timeBruteForceText.Text = Convert.ToString(bruteForce.time) + "ms";
+        }
+
+        private void tryToFindMoreSolutions_CheckedChanged(object sender, EventArgs e)
+        {
+            MainAlgorithm.runBinarySearch = this.tryToFindMoreSolutions.Checked;
+            if (this.tryToFindMoreSolutions.Checked && MainAlgorithm.globalMin != -1)
+            {
+                DialogResult result = MessageBox.Show("Need to try to find solutions for less value of directive faults?", "Binary Search", MessageBoxButtons.YesNo);
+                if (result == DialogResult.Yes)
+                {
+                    int bestSolutionIndex = 0;
+                    int anotherSolutionIndex = MainAlgorithm.tryToGetSolutionWithLessDirectiveFaults(task);
+                    if (anotherSolutionIndex != -1)
+                    {
+                        bestSolutionIndex = anotherSolutionIndex;
+                    }
+                    showResults(bestSolutionIndex);
+                }
+            }
+        }
+
+        private void showResults(int bestSolutionIndex)
+        {
+            solutionText.Text = MainAlgorithm.allSolutions[bestSolutionIndex].getPrint();
+
+            if (MainAlgorithm.allSolutions.Count == 1 && this.tryToFindMoreSolutions.Checked)
+            {
+                otherSolutionsLabel.Text = "No other solutions with lower value of directive faults was found";
+            }
+            else
+            {
+                String otherSolutionsText = "";
+                for (int i = 0; i < MainAlgorithm.allSolutions.Count; i++)
+                {
+                    if (i != bestSolutionIndex)
+                    {
+                        otherSolutionsText += i + ". " + MainAlgorithm.allSolutions[i].getShortPrint();
+                    }
+                }
+                otherSolutionsLabel.Text = otherSolutionsText;
+            }
+            this.timeMVGText.Text = Convert.ToString(MainAlgorithm.timeMVG) + "ms";
+            if (tryToFindMoreSolutions.Checked)
+                this.timeBinaryText.Text = Convert.ToString(MainAlgorithm.timeBinary) + "ms";
         }
     }
 
