@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Incassator
 {
-    class BruteForce : AGettingScore
+    class BruteForce  : AGettingScore
     {
         private Solution solution;
         private Task task;

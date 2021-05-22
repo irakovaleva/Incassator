@@ -27,7 +27,7 @@ namespace Incassator
         public static long timeMVG;
         public static long timeBinary;
 
-        public static Task OpenTask(string fileName)
+        public static Task openTask(string fileName)
         {
             lowScoreAlg = new LowScore();
             topScoreAlg = new TopScore();
@@ -50,7 +50,7 @@ namespace Incassator
             globalMin = tempMin;
             if (runBinarySearch)
             {
-                int anotherSolutionIndex = MainAlgorithm.tryToGetSolutionWithLessDirectiveFaults(task);
+                int anotherSolutionIndex = MainAlgorithm.binarySearch(task);
                 if (anotherSolutionIndex != -1)
                 {
                     bestSolutionIndex = anotherSolutionIndex;
@@ -86,7 +86,7 @@ namespace Incassator
             return bestSolution.Clone();
         }
 
-        public static int tryToGetSolutionWithLessDirectiveFaults(Task task)
+        public static int binarySearch(Task task)
         {
             var watch = System.Diagnostics.Stopwatch.StartNew();
             int solutionIndex = -1;

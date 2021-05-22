@@ -38,7 +38,7 @@ namespace Incassator
             {
                 selectFileTextBox.Text = fileToOpen;
                 selectFileTextBox.ForeColor = Color.Black;
-                this.task = MainAlgorithm.OpenTask(fileToOpen);
+                this.task = MainAlgorithm.openTask(fileToOpen);
                 this.Draw(this.task);
                 this.otherSolutionsTitle.Text = "Other solutions with lower value of directive faults:";
                 this.solutionText.Text = "";
@@ -153,7 +153,7 @@ namespace Incassator
             }
             if (MainAlgorithm.globalMin != -1)
             {
-                this.task = MainAlgorithm.OpenTask(fileToOpen);
+                this.task = MainAlgorithm.openTask(fileToOpen);
             }
             this.otherSolutionsTitle.Text = "Other solutions with lower value of directive faults:";
             int bestSolutionIndex = MainAlgorithm.getSolution(task);
@@ -223,7 +223,7 @@ namespace Incassator
                 if (result == DialogResult.Yes)
                 {
                     int bestSolutionIndex = 0;
-                    int anotherSolutionIndex = MainAlgorithm.tryToGetSolutionWithLessDirectiveFaults(task);
+                    int anotherSolutionIndex = MainAlgorithm.binarySearch(task);
                     if (anotherSolutionIndex != -1)
                     {
                         bestSolutionIndex = anotherSolutionIndex;
