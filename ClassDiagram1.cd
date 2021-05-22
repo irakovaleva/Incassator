@@ -1,0 +1,159 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Incassator.ABranching">
+    <Position X="7.5" Y="0.5" Width="2" />
+    <Members>
+      <Method Name="getNumOfBranches" Hidden="true" />
+      <Method Name="getRemainedPoints" Hidden="true" />
+      <Field Name="numOfBranches" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAACAIAAAAAAAAAAAAgAAIE=</HashCode>
+      <FileName>ABranching.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Incassator.RealisticAlg">
+    <Position X="10.5" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIA=</HashCode>
+      <FileName>RealisticAlg.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Incassator.AGettingScore">
+    <Position X="0.75" Y="0.5" Width="2.25" />
+    <Members>
+      <Field Name="extendOrder" Hidden="true" />
+      <Method Name="getExtendOrder" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAQAAAAAgAAAAAAAAAAAIAAFCAAAAAAAAAAAA=</HashCode>
+      <FileName>AGettingScore.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Incassator.TopScore">
+    <Position X="3.75" Y="0.5" Width="2.5" />
+    <Members>
+      <Method Name="checkForDirectiveFaults" Hidden="true" />
+      <Method Name="getAverageValueOfBenefits" Hidden="true" />
+      <Method Name="getExtendOrder" Hidden="true" />
+      <Method Name="getIndexOfNextVertexLess" Hidden="true" />
+      <Method Name="getIndexOfNextVertexMore" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAAAAAAAAAAAAAIAAAAQAAAECAAAAAQAAAAAA=</HashCode>
+      <FileName>TopScore.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Incassator.LowScore">
+    <Position X="0.75" Y="3.5" Width="2" />
+    <Members>
+      <Method Name="findNextVertex" Hidden="true" />
+      <Method Name="getAverageRemainedSum" Hidden="true" />
+      <Method Name="getExtendOrder" Hidden="true" />
+      <Method Name="getMaxProfitLessThanCurrent" Hidden="true" />
+      <Method Name="getMinPossibleCurSum" Hidden="true" />
+      <Method Name="getMinSumOnMatrix" Hidden="true" />
+      <Method Name="getSortListByGivenMoney" Hidden="true" />
+      <Method Name="getSumOfRemainedSum" Hidden="true" />
+    </Members>
+    <InheritanceLine Type="Incassator.AGettingScore" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="1.375" Y="2.373" />
+        <Point X="1.375" Y="3.5" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAgAQAAQAAAAAAAAAAAAAGAAAAAAECAAACQAAAAAAA=</HashCode>
+      <FileName>LowScore.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Incassator.Vertex">
+    <Position X="3.75" Y="2.75" Width="1.75" />
+    <Members>
+      <Field Name="task" Hidden="true" />
+      <Method Name="Vertex" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAABAQAAAAAAQAAAAAAAAAAAAAEBBAAAA=</HashCode>
+      <FileName>Vertex.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Incassator.MainAlgorithm">
+    <Position X="6.75" Y="2.75" Width="2.5" />
+    <Members>
+      <Field Name="bestSolution" Hidden="true" />
+      <Method Name="getTime" Hidden="true" />
+      <Field Name="globalMin" Hidden="true" />
+      <Method Name="Main" Hidden="true" />
+      <Field Name="runBinarySearch" Hidden="true" />
+      <Field Name="tempMin" Hidden="true" />
+      <Field Name="timeBinary" Hidden="true" />
+      <Field Name="timeMVG" Hidden="true" />
+    </Members>
+    <AssociationLine Name="branchingAlg" Type="Incassator.ABranching" FixedToPoint="true">
+      <Path>
+        <Point X="8.562" Y="2.75" />
+        <Point X="8.562" Y="1.796" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="lowScoreAlg" Type="Incassator.AGettingScore" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="7.594" Y="2.75" />
+        <Point X="7.594" Y="2.125" />
+        <Point X="3.5" Y="2.125" />
+        <Point X="3.5" Y="2.125" />
+        <Point X="3" Y="2.125" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="topScoreAlg" Type="Incassator.AGettingScore" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="7.141" Y="2.75" />
+        <Point X="7.141" Y="2.623" />
+        <Point X="2.688" Y="2.623" />
+        <Point X="2.688" Y="2.373" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AEAAAAAHBACAAAAAAIAAAAgAAQAAIAABIAAQBAEAAIA=</HashCode>
+      <FileName>MainAlgorithm.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="branchingAlg" />
+      <Field Name="lowScoreAlg" />
+      <Field Name="topScoreAlg" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Field Name="allSolutions" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Incassator.BruteForce" HideInheritanceLine="true">
+    <Position X="10.5" Y="3.75" Width="1.75" />
+    <Members>
+      <Method Name="getInitOrder" Hidden="true" />
+      <Method Name="getNodeBeforeInsert" Hidden="true" />
+      <Method Name="investigateSolution" Hidden="true" />
+      <Field Name="solution" Hidden="true" />
+      <Field Name="task" Hidden="true" />
+      <Field Name="time" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AIABAAAAAAAQAAAAAAAAABAACAAAAAAAAAAQAABAAAA=</HashCode>
+      <FileName>BruteForce.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Incassator.Selection">
+    <Position X="10.5" Y="2.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA=</HashCode>
+      <FileName>Selection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Incassator.Solution" Collapsed="true">
+    <Position X="8.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAEBAAAACACgIAAAAABAACAQAAACAAAAABBBAABA=</HashCode>
+      <FileName>Solution.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
