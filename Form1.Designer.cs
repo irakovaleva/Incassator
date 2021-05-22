@@ -92,7 +92,7 @@
             this.selectFileButton.TabIndex = 2;
             this.selectFileButton.Text = "Browse";
             this.selectFileButton.UseVisualStyleBackColor = true;
-            this.selectFileButton.Click += new System.EventHandler(this.button1_Click);
+            this.selectFileButton.Click += new System.EventHandler(this.openFile_Click);
             // 
             // matrixTitle
             // 
@@ -152,6 +152,7 @@
             // 
             // profitCorePanel
             // 
+            this.profitCorePanel.VerticalScroll.Maximum = 0;
             this.profitCorePanel.AutoScroll = true;
             this.profitCorePanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.profitCorePanel.Location = new System.Drawing.Point(16, 353);
@@ -170,6 +171,7 @@
             // 
             // directiveCorePanel
             // 
+            this.directiveCorePanel.VerticalScroll.Maximum = 0;
             this.directiveCorePanel.AutoScroll = true;
             this.directiveCorePanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.directiveCorePanel.Location = new System.Drawing.Point(16, 446);
@@ -182,14 +184,11 @@
             this.directiveTablePanel.AutoSize = true;
             this.directiveTablePanel.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.OutsetPartial;
             this.directiveTablePanel.ColumnCount = 1;
-            this.directiveTablePanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 44F));
             this.directiveTablePanel.Location = new System.Drawing.Point(0, 0);
             this.directiveTablePanel.Name = "directiveTablePanel";
             this.directiveTablePanel.RowCount = 2;
-            this.directiveTablePanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.directiveTablePanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.directiveTablePanel.Size = new System.Drawing.Size(50, 49);
             this.directiveTablePanel.TabIndex = 10;
+            this.directiveTablePanel.Size = new System.Drawing.Size(5, 5);
             this.directiveTablePanel.Visible = false;
             // 
             // getSolutionButton
@@ -200,7 +199,7 @@
             this.getSolutionButton.TabIndex = 11;
             this.getSolutionButton.Text = "Get Solution";
             this.getSolutionButton.UseVisualStyleBackColor = true;
-            this.getSolutionButton.Click += new System.EventHandler(this.button2_Click);
+            this.getSolutionButton.Click += new System.EventHandler(this.getSolution_Click);
             // 
             // solutionTitle
             // 
@@ -280,7 +279,7 @@
             this.showFullButton.TabIndex = 18;
             this.showFullButton.Text = "Show";
             this.showFullButton.UseVisualStyleBackColor = true;
-            this.showFullButton.Click += new System.EventHandler(this.button3_Click);
+            this.showFullButton.Click += new System.EventHandler(this.showOtherSolutionFull_Click);
             // 
             // useBrutForce
             // 
@@ -421,7 +420,7 @@
             this.Controls.Add(this.selectFileTextBox);
             this.Controls.Add(this.selectFileTitle);
             this.Name = "Form1";
-            this.Text = "Delivery";
+            this.Text = "Incassator";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.solutionCorePanel.ResumeLayout(false);
             this.solutionCorePanel.PerformLayout();

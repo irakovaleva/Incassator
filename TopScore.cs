@@ -26,7 +26,7 @@ namespace Incassator
                 while (extendOrder.Count() != task.numOfLocations)
                 {
                     int curPoint = extendOrder.ElementAt(extendOrder.Count() - 1);
-                    int nextPoint = (curSum < averageSum) ? getIndexOfNextVertexLess(task, remainedPoints, curSum, fixedOrder) : getIndexOfNextVertexMore(task, remainedPoints, curSum, fixedOrder);
+                    int nextPoint = (curSum < averageSum) ? getIndexOfNextVertexLess(task, remainedPoints, curSum, extendOrder) : getIndexOfNextVertexMore(task, remainedPoints, curSum, extendOrder);
                     if (nextPoint == -1)
                     {
                         return -1;

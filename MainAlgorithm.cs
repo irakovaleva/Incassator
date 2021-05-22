@@ -31,7 +31,7 @@ namespace Incassator
         {
             lowScoreAlg = new LowScore();
             topScoreAlg = new TopScore();
-            branchingAlg = new OptimisticAlg();
+            branchingAlg = new RealisticAlg();
             globalMin = -1;
             tempMin = -1;
             Task task = new Task(fileName);
@@ -118,6 +118,29 @@ namespace Incassator
             watch.Stop();
             timeBinary = watch.ElapsedMilliseconds;
             return solutionIndex;
+        }
+
+        public static string getTime(long time)
+        {
+            string result = "";
+            if (time < 1000)
+            {
+                result = Convert.ToString(time) + "ms";
+            }
+            else if (time < 100000)
+            {
+                int seconds = Convert.ToInt32(time) / 1000;
+                int millisecond = Convert.ToInt32(time) - (seconds * 1000);
+                result = Convert.ToString(seconds) + "s" + Convert.ToString(millisecond) + "ms";
+            }
+            else
+            {
+                long minute = time / 60000;
+                long second = (time - (minute * 60000)) / 1000;
+                long millisecond = time - (minute * 60000) - (second * 1000);
+                result = Convert.ToString(minute) + "m" + Convert.ToString(second) + "s" + Convert.ToString(millisecond) + "ms";
+            }
+            return result;
         }
     }
 }

@@ -25,7 +25,7 @@ namespace Incassator
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void openFile_Click(object sender, EventArgs e)
         {
             var FD = new System.Windows.Forms.OpenFileDialog();
             FD.InitialDirectory = @"D:\Anya\Tests";
@@ -143,7 +143,7 @@ namespace Incassator
 
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void getSolution_Click(object sender, EventArgs e)
         {
             MainAlgorithm.allSolutions = new List<Solution>();
             if (this.task == null)
@@ -161,7 +161,7 @@ namespace Incassator
             showResults(bestSolutionIndex);
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void showOtherSolutionFull_Click(object sender, EventArgs e)
         {
             string labelText = this.showFullTextBox.Text;
             int numOfSolution = -1;
@@ -211,7 +211,7 @@ namespace Incassator
             BruteForce bruteForce = new BruteForce();
             Solution solution = bruteForce.getSolution(this.task);
             bruteForceText.Text = solution.getPrint();
-            timeBruteForceText.Text = Convert.ToString(bruteForce.time) + "ms";
+            timeBruteForceText.Text = MainAlgorithm.getTime(bruteForce.time);
         }
 
         private void tryToFindMoreSolutions_CheckedChanged(object sender, EventArgs e)
@@ -253,10 +253,9 @@ namespace Incassator
                 }
                 otherSolutionsLabel.Text = otherSolutionsText;
             }
-            this.timeMVGText.Text = Convert.ToString(MainAlgorithm.timeMVG) + "ms";
+            this.timeMVGText.Text = MainAlgorithm.getTime(MainAlgorithm.timeMVG);
             if (tryToFindMoreSolutions.Checked)
-                this.timeBinaryText.Text = Convert.ToString(MainAlgorithm.timeBinary) + "ms";
+                this.timeBinaryText.Text = MainAlgorithm.getTime(MainAlgorithm.timeBinary);
         }
     }
-
 }
