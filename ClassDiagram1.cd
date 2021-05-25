@@ -90,12 +90,6 @@
       <Field Name="timeBinary" Hidden="true" />
       <Field Name="timeMVG" Hidden="true" />
     </Members>
-    <AssociationLine Name="branchingAlg" Type="Incassator.ABranching" FixedToPoint="true">
-      <Path>
-        <Point X="8.562" Y="2.75" />
-        <Point X="8.562" Y="1.796" />
-      </Path>
-    </AssociationLine>
     <AssociationLine Name="lowScoreAlg" Type="Incassator.AGettingScore" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
       <Path>
         <Point X="7.594" Y="2.75" />
@@ -113,14 +107,20 @@
         <Point X="2.688" Y="2.373" />
       </Path>
     </AssociationLine>
+    <AssociationLine Name="branchingAlg" Type="Incassator.ABranching" FixedToPoint="true">
+      <Path>
+        <Point X="8.562" Y="2.75" />
+        <Point X="8.562" Y="1.796" />
+      </Path>
+    </AssociationLine>
     <TypeIdentifier>
       <HashCode>AEAAAAAHBACAAAAAAIAAAAgAAQAAIAABIAAQBAEAAIA=</HashCode>
       <FileName>MainAlgorithm.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Field Name="branchingAlg" />
       <Field Name="lowScoreAlg" />
       <Field Name="topScoreAlg" />
+      <Field Name="branchingAlg" />
     </ShowAsAssociation>
     <ShowAsCollectionAssociation>
       <Field Name="allSolutions" />
@@ -137,14 +137,14 @@
       <Field Name="time" Hidden="true" />
     </Members>
     <TypeIdentifier>
-      <HashCode>AIABAAAAAAAQAAAAAAAAABAACAAAAAAAAAAQAABAAAA=</HashCode>
+      <HashCode>AIABAAAAAAAQAAAAAAAAABAACAAAAEAAAAAQAABAAAA=</HashCode>
       <FileName>BruteForce.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Incassator.Selection">
     <Position X="10.5" Y="2.25" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAQAA=</HashCode>
       <FileName>Selection.cs</FileName>
     </TypeIdentifier>
   </Class>

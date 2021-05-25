@@ -61,6 +61,8 @@ namespace Incassator
 
         public static Solution runMVG(Task task)
         {
+            Selection.minTopScore = -1;
+            Selection.tree = new BinaryTree();
             bestSolution = new Solution(task);
             int numSteps = 0;
             List<int> fixedOrder = new List<int>();
@@ -68,10 +70,14 @@ namespace Incassator
             List<Vertex> curVertexes = new List<Vertex>();
             Vertex top = new Vertex(task, fixedOrder);
             curVertexes.Add(top);
+            //string writePath = @"D:\Anya\log.txt";
+            //Selection.sw = new System.IO.StreamWriter(writePath, true, System.Text.Encoding.Default);
             while (curVertexes.Count() != 0)
             {
                 numSteps++;
+                int oldNumOfVertex = curVertexes.Count;
                 branchingAlg.getParentNextVertexes(task, curVertexes);
+                Selection.numOfNewVertexes = curVertexes.Count - oldNumOfVertex + 1;
                 Selection.getSelection(curVertexes, lowScoreAlg, topScoreAlg);
             }
             if (tempMin == -1)

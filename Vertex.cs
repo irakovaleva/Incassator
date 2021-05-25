@@ -10,8 +10,13 @@ namespace Incassator
     {
         public Task task;
         public List<int> fixedOrder;
-        private int lowScore;
-        private int topScore;
+        public int lowScore;
+        public int topScore;
+
+        public override string ToString()
+        {
+            return Convert.ToString(topScore);
+        }
 
         public Vertex(Task task, List<int> fixedOrder)
         {

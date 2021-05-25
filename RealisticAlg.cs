@@ -21,7 +21,7 @@ namespace Incassator
                 int minIndex = -1;
                 for (int i = 0; i < curVertexes.Count(); i++)
                 {
-                    int curTopScore = curVertexes.ElementAt(i).getTopScore();
+                    int curTopScore = curVertexes[i].topScore;
                     if ((minTopScore == -1 || curTopScore < minTopScore) && curTopScore != -1)
                     {
                         minTopScore = curTopScore;

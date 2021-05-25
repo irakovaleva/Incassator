@@ -29,6 +29,7 @@ namespace Incassator
                     }
                 }
                 curVertexes.Remove(curVertex);
+                Selection.tree.remove(curVertex.topScore);
             }
 
         }

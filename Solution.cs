@@ -80,8 +80,12 @@ namespace Incassator
             for (int i = 1; i < orderNumber.Count; i++)
             {
                 result += " -> " + orderNumber[i];
+                if (i % 7 == 0)
+                    result += "\n";
             }
-            result += ":\n0. 0 point - bank, initial sum = " + task.initialSum + "\n";
+            result += "\nSum value of safety is = " + optimum +
+                      "\nNum of directive times faults = " + directiveFaults + "\n";
+            result += "0. 0 point - bank, initial sum = " + task.initialSum + "\n";
             int sumTime = 0;
             int curSum = task.initialSum;
             for (int i = 1; i < orderNumber.Count - 1; i++)
@@ -110,9 +114,7 @@ namespace Incassator
                       " point (bank): \n    dest for point = " + time +
                       ";\n    current sum we have = " + curSum +
                       ";\n    safety value from this segment = " + (curSum * time) +
-                      ";\n    summary time we spent = " + sumTime + "\n";
-            result += "\nSum value of safety is = " + optimum +
-                      "\nNum of directive times faults = " + directiveFaults + "\n\n";
+                      ";\n    summary time we spent = " + sumTime + "\n\n";
                       //"\nNum of steps is = " + numSteps +
                       //"\nNum of vertexes is = " + numOfSteps + "\n\n";
             return result;

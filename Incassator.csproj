@@ -48,6 +48,8 @@
   <ItemGroup>
     <Compile Include="ABranching.cs" />
     <Compile Include="AGettingScore.cs" />
+    <Compile Include="BinaryMinHeap.cs" />
+    <Compile Include="BinaryTree.cs" />
     <Compile Include="TopScore.cs" />
     <Compile Include="BruteForce.cs" />
     <Compile Include="Form1.cs">
