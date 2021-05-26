@@ -17,17 +17,27 @@ namespace Incassator
             }
             else
             {
-                int minTopScore = -1;
+                int minTopScore = Selection.tree.findMin();
                 int minIndex = -1;
-                for (int i = 0; i < curVertexes.Count(); i++)
+                for (int i = curVertexes.Count - 1; i >= 0; i--)
+                {
+                    if (curVertexes[i].topScore == minTopScore)
+                    {
+                        minIndex = i;
+                        break;
+                    }
+                }
+                //int minTopScore = -1;
+                //int minIndex = -1;
+                /*for (int i = 0; i < curVertexes.Count(); i++)
                 {
                     int curTopScore = curVertexes[i].topScore;
-                    if ((minTopScore == -1 || curTopScore < minTopScore) && curTopScore != -1)
+                    if ((minTopScore == -1 || curTopScore < minTopScore))
                     {
                         minTopScore = curTopScore;
                         minIndex = i;
                     }
-                }
+                }*/
                 return (minIndex == -1) ? null : curVertexes.ElementAt(minIndex);
             }
         }

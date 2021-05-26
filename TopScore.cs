@@ -32,11 +32,11 @@ namespace Incassator
                         return -1;
                     }
 
-                    int curDist = task.times[curPoint, remainedPoints.ElementAt(nextPoint)];
-                    extendOrder.Add(remainedPoints.ElementAt(nextPoint));    //достраиваем порядок в fixedOrder, чтобы все вершины были включены
+                    int curDist = task.times[curPoint, nextPoint];
+                    extendOrder.Add(nextPoint);    //достраиваем порядок в fixedOrder, чтобы все вершины были включены
                     result += curDist * curSum;
-                    curSum += task.profitOnVertex[remainedPoints.ElementAt(nextPoint)];
-                    remainedPoints.RemoveAt(nextPoint);
+                    curSum += task.profitOnVertex[nextPoint];
+                    remainedPoints.Remove(nextPoint);
                 }
                 int dist = task.times[extendOrder.ElementAt(extendOrder.Count() -1), 0];
                 result += dist * curSum;
@@ -49,17 +49,33 @@ namespace Incassator
         {
             int resultIndex = -1;
             int maxValue = 0;
+            int curDirectiveFaults = getDirectiveFaults(task, fixedOrder);
+            List<int> indexes = new List<int>();
+            List<int> normindexes = new List<int>();
             for (int i = 0; i < remainedPoints.Count(); i++)
             {
-                int curIndex = remainedPoints.ElementAt(i);
+                int curIndex = remainedPoints[i];
                 int curValue = task.profitOnVertex[curIndex];
-                if (curSum + curValue >= 0 && checkForDirectiveFaults(task, fixedOrder, curIndex))
+                int newDirectiveFaults = checkForDirectiveFaults(task, fixedOrder, curIndex);
+                if (curSum + curValue >= 0 && newDirectiveFaults <= task.directiveFaultsMax)
                 {
-                    if (curValue > maxValue)
+                    indexes.Add(curIndex);
+                    if (newDirectiveFaults == curDirectiveFaults)
                     {
-                        maxValue = curValue;
-                        resultIndex = i;
+                        normindexes.Add(curIndex);
                     }
+                }
+            }
+            //List<int> arrayToFind = (normindexes.Count == 0 || task.directiveFaultsMax == task.numOrders) ? indexes : normindexes;
+            List<int> arrayToFind = normindexes.Count == 0 ? indexes : normindexes;
+            for (int i = 0; i < arrayToFind.Count; i++)
+            {
+                int curIndex = arrayToFind[i];
+                int curValue = task.profitOnVertex[curIndex];
+                if (curValue > maxValue)
+                {
+                    maxValue = curValue;
+                    resultIndex = curIndex;
                 }
             }
             return resultIndex;
@@ -69,28 +85,44 @@ namespace Incassator
         {
             int resultIndex = -1;
             int minValue = 0;
+            int curDirectiveFaults = getDirectiveFaults(task, fixedOrder);
+            List<int> indexes = new List<int>();
+            List<int> normindexes = new List<int>();
             for (int i = 0; i < remainedPoints.Count(); i++)
             {
-                int curIndex = remainedPoints.ElementAt(i);
+                int curIndex = remainedPoints[i];
                 int curValue = task.profitOnVertex[curIndex];
-                if (curSum + curValue >= 0 && checkForDirectiveFaults(task, fixedOrder, curIndex))
+                int newDirectiveFaults = checkForDirectiveFaults(task, fixedOrder, curIndex);
+                if (curSum + curValue >= 0 && newDirectiveFaults <= task.directiveFaultsMax)
                 {
-                    if (minValue == 0 || curValue < minValue)
+                    indexes.Add(curIndex);
+                    if (newDirectiveFaults == curDirectiveFaults)
                     {
-                        minValue = curValue;
-                        resultIndex = i;
+                        normindexes.Add(curIndex);
                     }
+                }
+            }
+            //List<int> arrayToFind = (normindexes.Count == 0 || task.directiveFaultsMax == task.numOrders) ? indexes : normindexes;
+            List<int> arrayToFind = normindexes.Count == 0 ? indexes : normindexes;
+            for (int i = 0; i < arrayToFind.Count; i++)
+            {
+                int curIndex = arrayToFind[i];
+                int curValue = task.profitOnVertex[curIndex];
+                if (minValue == 0 || curValue < minValue)
+                {
+                    minValue = curValue;
+                    resultIndex = curIndex;
                 }
             }
             return resultIndex;
         }
 
-        public bool checkForDirectiveFaults(Task task, List<int> fixedOrder, int nextPointIndex)
+        public int checkForDirectiveFaults(Task task, List<int> fixedOrder, int nextPointIndex)
         {
             List<int> newOrder = fixedOrder.ToList<int>();
             newOrder.Add(nextPointIndex);
             int directiveFaults = getDirectiveFaults(task, newOrder);
-            return directiveFaults <= task.directiveFaultsMax;
+            return directiveFaults;
         }
 
         public int getAverageValueOfBenefits(Task task, List<int> remainedPoints)

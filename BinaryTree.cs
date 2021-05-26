@@ -26,6 +26,22 @@ namespace Incassator
             _count++;
         }
 
+        /*public void add(Vertex vertex)
+        {
+            if (_head == null)
+            {
+                _head = new BinaryTreeNode(vertex);
+            }
+            // Случай 2: Дерево не пустое => 
+            // ищем правильное место для вставки.
+            else
+            {
+                addTo(_head, value);
+            }
+
+            _count++;
+        }*/
+
         private void addTo(BinaryTreeNode node, int value)
         {
             // Случай 1: Вставляемое значение меньше значения узла
@@ -46,6 +62,27 @@ namespace Incassator
             }
         }
 
+        /*private void addTo(BinaryTreeNode node, Vertex vertex)
+        {
+            int value = vertex.topScore;
+            // Случай 1: Вставляемое значение меньше значения узла
+            if (value < node.Value)
+            {
+                if (node.Left == null)
+                    node.Left = new BinaryTreeNode(vertex);
+                else
+                    addTo(node.Left, vertex);
+            }
+            // Случай 2: Вставляемое значение больше или равно значению узла.
+            else
+            {
+                if (node.Right == null)
+                    node.Right = new BinaryTreeNode(vertex);
+                else
+                    addTo(node.Right, vertex);
+            }
+        }*/
+
         public int findMin()
         {
             int result = -1;
@@ -57,6 +94,7 @@ namespace Incassator
             }
             return result;
         }
+
 
         public bool remove(int value)
         {
@@ -189,10 +227,17 @@ namespace Incassator
         {
             Value = value;
         }
+        /*public BinaryTreeNode(Vertex vertex)
+        {
+            Value = vertex.topScore;
+            order = vertex.fixedOrder;
+        }*/
 
         public BinaryTreeNode Left { get; set; }
         public BinaryTreeNode Right { get; set; }
         public int Value { get; private set; }
+
+        //public List<int> order;
 
         /// 
         /// Сравнивает текущий узел с данным.

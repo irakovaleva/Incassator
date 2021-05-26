@@ -19,10 +19,10 @@ namespace Incassator
                 List<int> remainedPoints = getRemainedPoints(task, curVertex.fixedOrder);
                 for (int i = 0; i < remainedPoints.Count(); i++)   //ветвление, составление вариантов последовательности обхода
                 {
-                    if (task.times[curVertex.fixedOrder.ElementAt(curVertex.fixedOrder.Count() - 1), remainedPoints.ElementAt(i)] > 0)
+                    if (task.times[curVertex.fixedOrder[curVertex.fixedOrder.Count() - 1], remainedPoints[i]] > 0)
                     {
                         List<int> curOrder = curVertex.fixedOrder.ToList();
-                        curOrder.Add(remainedPoints.ElementAt(i));
+                        curOrder.Add(remainedPoints[i]);
                         Vertex nextVertex = new Vertex(task, curOrder);
                         curVertexes.Add(nextVertex);
                         numOfBranches++;

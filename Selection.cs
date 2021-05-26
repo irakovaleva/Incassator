@@ -11,6 +11,7 @@ namespace Incassator
         public static int numOfNewVertexes;
         public static int minTopScore;
         public static BinaryTree tree;
+        public static int counter;
         public static void getSelection(List<Vertex> vertexes, AGettingScore lowScoreAlg, AGettingScore topScoreAlg)
         {
             int vertexesCount = vertexes.Count;
@@ -25,7 +26,9 @@ namespace Incassator
                 //int indexForTop = i - vertexesCount + numOfNewVertexes;
                 //curTopScore[indexForTop] = vertexes[i].getTopScore(topScoreAlg);
                 if (topScore != -1)
+                {
                     tree.add(topScore);
+                }
             }
 
 
