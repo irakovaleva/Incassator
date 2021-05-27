@@ -11,7 +11,6 @@ namespace Incassator
         public static int numOfNewVertexes;
         public static int minTopScore;
         public static BinaryTree tree;
-        public static int counter;
         public static void getSelection(List<Vertex> vertexes, AGettingScore lowScoreAlg, AGettingScore topScoreAlg)
         {
             int vertexesCount = vertexes.Count;
@@ -58,6 +57,19 @@ namespace Incassator
                     }
                 }
             }
+
+           /* string str = "----------------------\n";
+            for (int i = 0; i < vertexes.Count; i++)
+            {
+                str += "Order: ";
+                for (int j = 0; j < vertexes[i].fixedOrder.Count; j++)
+                {
+                    str += vertexes[i].fixedOrder[j];
+                }
+                str += "\t\tlow = " + vertexes[i].lowScore + "\t\ttop=" + vertexes[i].topScore + "\n";
+            }
+            str += "minTopScore = " + minTopScore + "\n";
+            Console.WriteLine(str);*/
 
 
             for (int i = toRemove.Count() - 1; i >= 0; i--)
