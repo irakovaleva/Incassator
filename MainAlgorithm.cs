@@ -119,7 +119,17 @@ namespace Incassator
                 }
                 if (result != null)
                 {
-                    allSolutions.Add(result.Clone());
+                    bool needToAdd = true;
+                    for (int i = 0; i < allSolutions.Count; i++)
+                    {
+                        if (allSolutions[i].getOptimum() == result.getOptimum() && allSolutions[i].getDirectiveFaults() == result.getDirectiveFaults())
+                        {
+                            needToAdd = false;
+                            break;
+                        }
+                    }
+                    if (needToAdd)
+                        allSolutions.Add(result.Clone());
                 }
             }
             watch.Stop();
