@@ -103,7 +103,8 @@ namespace Incassator
             while (maxDirValue - minDirValue > 1)
             {
                 tempMin = -1;
-                int curDirValue = (int)Math.Ceiling(Convert.ToDouble(maxDirValue + minDirValue) / Convert.ToDouble(2));
+                //int curDirValue = (int)Math.Ceiling(Convert.ToDouble(maxDirValue + minDirValue) / Convert.ToDouble(2));
+                int curDirValue = (int)((maxDirValue + minDirValue) / 2);
                 task.directiveFaultsMax = curDirValue;
                 Solution result = runMVG(task);
                 if (result == null || tempMin > curSolution.getOptimum())

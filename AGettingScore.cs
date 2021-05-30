@@ -32,7 +32,7 @@ namespace Incassator
                 {
                     return -1;
                 }
-                if (summaryTime > task.directiveTime[fixedOrder.ElementAt(i)])
+                if (fixedOrder[i] != 0 && summaryTime > task.directiveTime[fixedOrder.ElementAt(i)])
                 {
                     directiveTimesFaults++;
                 }

@@ -128,7 +128,7 @@ namespace Incassator
                 result += " -> " + orderNumber[i];
             }
             result += ":\nSum value of safety is = " + optimum +
-                      "\nNum of directive times faults = " + directiveFaults + "\n\n"; ;
+                      "\nNum of directive times faults = " + directiveFaults + "\n";
             return result;
         }
 
